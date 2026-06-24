@@ -100,26 +100,57 @@ const faqs = [
 
         <a class="nav-call" href={phoneHref}>{phoneLabel}</a>
 
-        <details class="mobile-menu">
-          <summary aria-label="Open navigation">
-            <span></span>
-            <span></span>
-            <span></span>
-          </summary>
-          <div class="mobile-menu-panel">
-            <a href="#services">Services</a>
-            <a href="#about">About</a>
-            <a href="#faq">FAQ</a>
-            <a href={phoneHref}>Call {phoneLabel}</a>
-          </div>
-        </details>
+        <button class="hamburger" id="mmenuOpen" type="button" aria-label="Open menu" aria-controls="mmenu" aria-expanded="false">
+          <img src={asset("/assets/icons/hamburger-menu.svg")} alt="" width="30" height="30" />
+        </button>
       </header>
+
+      <aside class="mmenu" id="mmenu" aria-hidden="true" inert>
+        <div class="mmenu-head">
+          <a class="brand-link" href="#top" data-mclose aria-label="Omni Computer Support home">
+            <img src={asset("/assets/brand/omni-redesign-logo.svg")} alt="" width="42" height="36" />
+            <span class="brand-text">
+              <span>Omni</span>
+              <span>Computer Support</span>
+            </span>
+          </a>
+          <button class="mmenu-close" id="mmenuClose" type="button" aria-label="Close menu">×</button>
+        </div>
+
+        <ul class="mmenu-list" aria-label="Mobile navigation">
+          <li>
+            <a href="#services" data-mclose>
+              <span class="ico"><img src={asset("/assets/icons/computer-setup.png")} alt="" width="60" height="60" /></span>
+              Services
+            </a>
+          </li>
+          <li>
+            <a href="#about" data-mclose>
+              <span class="ico"><img src={asset("/assets/icons/windows-help.png")} alt="" width="60" height="60" /></span>
+              About
+            </a>
+          </li>
+          <li>
+            <a href="#faq" data-mclose>
+              <span class="ico"><img src={asset("/assets/icons/website-design.png")} alt="" width="60" height="60" /></span>
+              FAQ
+            </a>
+          </li>
+          <li>
+            <a href="#contact" data-mclose>
+              <span class="ico"><img src={asset("/assets/icons/wifi-and-printer-help.png")} alt="" width="60" height="60" /></span>
+              Contact
+            </a>
+          </li>
+        </ul>
+
+        <div class="mmenu-foot">
+          <a class="button button-primary" href={phoneHref}>Call {phoneLabel}</a>
+        </div>
+      </aside>
 
       <main id="top">
         <section class="hero" aria-labelledby="hero-title">
-          <div class="ambient ambient-left" aria-hidden="true"></div>
-          <div class="ambient ambient-right" aria-hidden="true"></div>
-
           <div class="container hero-grid">
             <div class="hero-copy">
               <p class="location-pill">
@@ -273,5 +304,37 @@ const faqs = [
         </div>
       </footer>
     </div>
+    <script>
+      (() => {
+        const menu = document.getElementById("mmenu");
+        const openButton = document.getElementById("mmenuOpen");
+        const closeButton = document.getElementById("mmenuClose");
+
+        if (!menu || !openButton || !closeButton) return;
+
+        const open = () => {
+          menu.classList.add("open");
+          menu.setAttribute("aria-hidden", "false");
+          menu.removeAttribute("inert");
+          openButton.setAttribute("aria-expanded", "true");
+          document.body.classList.add("menu-open");
+        };
+
+        const close = () => {
+          menu.classList.remove("open");
+          menu.setAttribute("aria-hidden", "true");
+          menu.setAttribute("inert", "");
+          openButton.setAttribute("aria-expanded", "false");
+          document.body.classList.remove("menu-open");
+        };
+
+        openButton.addEventListener("click", open);
+        closeButton.addEventListener("click", close);
+        menu.querySelectorAll("[data-mclose]").forEach((link) => link.addEventListener("click", close));
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape" && menu.classList.contains("open")) close();
+        });
+      })();
+    </script>
   </body>
 </html>
