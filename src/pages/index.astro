@@ -1,0 +1,265 @@
+---
+import "@fontsource/syne/600.css";
+import "@fontsource/syne/700.css";
+import "@fontsource/syne/800.css";
+import "@fontsource/plus-jakarta-sans/400.css";
+import "@fontsource/plus-jakarta-sans/500.css";
+import "@fontsource/plus-jakarta-sans/600.css";
+import "@fontsource/plus-jakarta-sans/700.css";
+import "@fontsource/plus-jakarta-sans/800.css";
+import "../styles/global.css";
+
+const phoneLabel = "(305) 339-9449";
+const phoneHref = "tel:+13053399449";
+const emailLabel = "thekelvinperez@gmail.com";
+const emailHref = "mailto:thekelvinperez@gmail.com";
+const basePath = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const asset = (path: string) => `${basePath}${path.replace(/^\/+/, "")}`;
+
+const supportTags = ["Windows", "macOS", "Linux", "WiFi", "Virus removal", "Data recovery"];
+
+const services = [
+  {
+    title: "WiFi and Printer Support",
+    description: "I restore connectivity, resolve weak signal issues, and get printers paired and working reliably.",
+    icon: "/assets/icons/wifi-and-printer-help.png",
+  },
+  {
+    title: "Windows, Mac and Linux Support",
+    description: "I troubleshoot slow, crashing, or failing systems across all three major platforms.",
+    icon: "/assets/icons/computer-setup.png",
+  },
+  {
+    title: "Virus Removal and Recovery",
+    description: "I eliminate malware, recover files when possible, and help protect the system from repeat issues.",
+    icon: "/assets/icons/virus-removal.png",
+  },
+  {
+    title: "Windows and Linux Setup",
+    description: "I handle fresh installs, driver configuration, dual boot setups, and clean system builds.",
+    icon: "/assets/icons/linux-setup.png",
+  },
+  {
+    title: "Website and Print Design",
+    description: "I create websites, flyers, logos, and business cards without sending the project to multiple vendors.",
+    icon: "/assets/icons/website-design.png",
+  },
+  {
+    title: "Monthly Maintenance",
+    description: "I provide updates, backups, checkups, cleanup, and small business support on a predictable schedule.",
+    icon: "/assets/icons/backups-and-file-transfer.png",
+  },
+];
+
+const faqs = [
+  {
+    question: "How much does it cost?",
+    answer: "Pricing depends on the job. Call or email with the details and I will give you a clear quote before any work begins.",
+  },
+  {
+    question: "Do you offer remote support?",
+    answer: "Yes. I can handle many software issues, setup work, website updates, and design projects remotely.",
+  },
+  {
+    question: "Do you support Mac and Linux?",
+    answer: "Yes. I work across Windows, Mac, and Linux for setup, maintenance, cleanup, and everyday troubleshooting.",
+  },
+  {
+    question: "Can you handle websites and print materials?",
+    answer: "Yes. I design websites, logos, flyers, and business cards for local businesses, all in one place.",
+  },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Omni Computer Support helps with Windows, Mac, Linux, WiFi, printers, virus removal, data recovery, websites, flyers, logos, business cards, and monthly support."
+    />
+    <link rel="icon" href={asset("/assets/brand/omni-redesign-logo.svg")} type="image/svg+xml" />
+    <title>Omni Computer Support</title>
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="site-nav" aria-label="Primary navigation">
+        <a class="brand-link" href="#top" aria-label="Omni Computer Support home">
+          <img src={asset("/assets/brand/omni-redesign-logo.svg")} alt="" width="42" height="36" />
+          <span>Omni Computer Support</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Page sections">
+          <a href="#services">Services</a>
+          <a href="#about">About</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+
+        <a class="nav-call" href={phoneHref}>{phoneLabel}</a>
+      </header>
+
+      <main id="top">
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="ambient ambient-left" aria-hidden="true"></div>
+          <div class="ambient ambient-right" aria-hidden="true"></div>
+
+          <div class="container hero-grid">
+            <div class="hero-copy">
+              <p class="location-pill">
+                <span aria-hidden="true"></span>
+                Fairfield, Iowa, remote support available
+              </p>
+
+              <h1 id="hero-title">
+                <span>Computer trouble?</span>
+                <strong>I will take care of it.</strong>
+              </h1>
+
+              <p class="hero-intro">
+                I help with Windows, Mac, Linux, WiFi, printers, malware cleanup, file recovery, websites, and monthly maintenance.
+              </p>
+
+              <div class="hero-actions">
+                <a class="button button-primary" href={phoneHref}>Call {phoneLabel}</a>
+                <a class="button button-secondary" href={emailHref}>Email Kelvin</a>
+              </div>
+
+              <div class="support-tags" aria-label="Supported service categories">
+                {supportTags.map((tag) => <span>{tag}</span>)}
+              </div>
+            </div>
+
+            <div class="hero-photo-wrap" aria-label="Kelvin Perez contact card">
+              <div class="hero-glow" aria-hidden="true"></div>
+              <div class="hero-ring" aria-hidden="true"></div>
+              <img
+                class="hero-photo"
+                src={asset("/assets/brand/omni-redesign-photo.jpg")}
+                alt="Kelvin Perez"
+                width="368"
+                height="368"
+                loading="eager"
+              />
+              <div class="hero-badge">
+                <span>Call or text</span>
+                <a href={phoneHref}>{phoneLabel}</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="services" class="section services-section" aria-labelledby="services-title">
+          <div class="container">
+            <div class="split-heading">
+              <div>
+                <p class="section-kicker">Services</p>
+                <h2 id="services-title">Everything your computer needs to stay running</h2>
+              </div>
+              <a href={phoneHref}>Not sure what you need? Call first</a>
+            </div>
+
+            <div class="services-grid">
+              {services.map((service) => (
+                <article class="service-card">
+                  <div class="service-icon">
+                    <img src={asset(service.icon)} alt="" width="38" height="38" loading="lazy" />
+                  </div>
+                  <h3>{service.title}</h3>
+                  <p>{service.description}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="about" class="section about-section" aria-labelledby="about-title">
+          <div class="container about-grid">
+            <div class="about-copy">
+              <p class="section-kicker">About Kelvin</p>
+              <h2 id="about-title">I explain the work clearly. No confusing tech talk.</h2>
+              <p>
+                I built Omni Computer Support around one principle, you deserve direct, honest answers about your technology. Call me with a stubborn printer, a slow laptop, a website that needs refreshing, or print materials for your business.
+              </p>
+              <p>
+                I am based in Fairfield, Iowa, and I am available remotely for software, setup, website updates, and design work.
+              </p>
+
+              <div class="about-stats">
+                <div>
+                  <strong>3</strong>
+                  <span>Platforms, Windows, Mac, Linux</span>
+                </div>
+                <div>
+                  <strong>Local</strong>
+                  <span>Fairfield, Iowa, plus remote support</span>
+                </div>
+                <div>
+                  <strong>Free</strong>
+                  <span>Quote before work begins</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="about-photo-card">
+              <div class="about-photo-glow" aria-hidden="true"></div>
+              <figure>
+                <img src={asset("/assets/brand/omni-redesign-photo.jpg")} alt="Kelvin Perez" width="340" height="380" loading="lazy" />
+                <figcaption>
+                  <strong>Kelvin Perez</strong>
+                  <span>Owner, Omni Computer Support</span>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        <section id="faq" class="section faq-section" aria-labelledby="faq-title">
+          <div class="container faq-grid">
+            <div class="faq-heading">
+              <p class="section-kicker">FAQ</p>
+              <h2 id="faq-title">Good questions.</h2>
+              <p>Still not sure? Call first, explain what is happening, and I will give you a clear next step.</p>
+              <a href={phoneHref}>{phoneLabel}</a>
+            </div>
+
+            <div class="faq-list">
+              {faqs.map((item, index) => (
+                <details open={index === 0}>
+                  <summary>{item.question}</summary>
+                  <p>{item.answer}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" class="final-cta" aria-labelledby="contact-title">
+          <div class="container final-grid">
+            <div>
+              <h2 id="contact-title">Ready to get it fixed?</h2>
+              <p>Call now, describe what is happening, and I will give you a free, honest quote before work begins.</p>
+            </div>
+            <div class="final-actions">
+              <a class="button button-primary button-large" href={phoneHref}>Call {phoneLabel}</a>
+              <a href={emailHref}>{emailLabel}</a>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="footer-brand">
+          <img src={asset("/assets/brand/omni-redesign-logo.svg")} alt="" width="36" height="30" loading="lazy" />
+          <span>Omni Computer Support</span>
+        </div>
+        <div class="footer-links">
+          <a href={phoneHref}>{phoneLabel}</a>
+          <a href={emailHref}>{emailLabel}</a>
+          <span>Fairfield, Iowa</span>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
