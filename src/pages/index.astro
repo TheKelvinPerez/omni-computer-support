@@ -16,36 +16,44 @@ const asset = (path: string) => `${basePath}${path.replace(/^\/+/, "")}`;
 
 const supportTags = ["Windows", "macOS", "Linux", "WiFi", "Virus removal", "Data recovery"];
 
+const featuredService = {
+  num: "01",
+  title: "WiFi and Printer Support",
+  description: "I restore connectivity, resolve weak signal issues, and get printers paired and working reliably.",
+  icon: "/assets/services/wifi-printer.png",
+  tags: ["Home & Office", "Networking", "Printers"],
+};
+
 const services = [
   {
-    title: "WiFi and Printer Support",
-    description: "I restore connectivity, resolve weak signal issues, and get printers paired and working reliably.",
-    icon: "/assets/icons/wifi-and-printer-help.png",
-  },
-  {
+    num: "02",
     title: "Windows, Mac and Linux Support",
     description: "I troubleshoot slow, crashing, or failing systems across all three major platforms.",
-    icon: "/assets/icons/computer-setup.png",
+    icon: "/assets/services/os-support.png",
   },
   {
+    num: "03",
     title: "Virus Removal and Recovery",
     description: "I eliminate malware, recover files when possible, and help protect the system from repeat issues.",
-    icon: "/assets/icons/virus-removal.png",
+    icon: "/assets/services/virus-recovery.png",
   },
   {
+    num: "04",
     title: "Windows and Linux Setup",
     description: "I handle fresh installs, driver configuration, dual boot setups, and clean system builds.",
-    icon: "/assets/icons/linux-setup.png",
+    icon: "/assets/services/windows-linux-setup.png",
   },
   {
+    num: "05",
     title: "Website and Print Design",
     description: "I create websites, flyers, logos, and business cards without sending the project to multiple vendors.",
-    icon: "/assets/icons/website-design.png",
+    icon: "/assets/services/website-print-design.png",
   },
   {
+    num: "06",
     title: "Monthly Maintenance",
     description: "I provide updates, backups, checkups, cleanup, and small business support on a predictable schedule.",
-    icon: "/assets/icons/backups-and-file-transfer.png",
+    icon: "/assets/services/monthly-maintenance.png",
   },
 ];
 
@@ -80,6 +88,23 @@ const faqs = [
     />
     <link rel="icon" href={asset("/favicon.ico")} sizes="any" />
     <link rel="icon" href={asset("/favicon.png")} type="image/png" />
+    <link
+      rel="preload"
+      as="image"
+      href="/assets/brand/omni-hero-background-v2.webp"
+      type="image/webp"
+      media="(min-width: 761px)"
+      fetchpriority="high"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="/assets/brand/omni-hero-background-mobile.webp"
+      type="image/webp"
+      media="(max-width: 760px)"
+      fetchpriority="high"
+    />
+    <script is:inline src={asset("/assets/reveal.js")} defer></script>
     <title>Omni Computer Support</title>
   </head>
   <body>
@@ -151,43 +176,64 @@ const faqs = [
       </aside>
 
       <main id="top">
-        <section class="hero" aria-labelledby="hero-title">
+        <section class="hero" aria-labelledby="hero-title" data-section-reveal>
+          <picture class="hero-fallback" aria-hidden="true">
+            <source srcset="/assets/brand/omni-hero-background-mobile.webp" media="(max-width: 760px)" type="image/webp" />
+            <source srcset="/assets/brand/omni-hero-background-mobile.png" media="(max-width: 760px)" />
+            <source srcset="/assets/brand/omni-hero-background-v2.webp" media="(min-width: 761px)" type="image/webp" />
+            <img
+              src="/assets/brand/omni-hero-background-v2.png"
+              alt=""
+              width="1600"
+              height="900"
+              decoding="async"
+              fetchpriority="high"
+            />
+          </picture>
+          <video class="hero-video" autoplay muted loop playsinline preload="none" aria-hidden="true" data-hero-video>
+            <source media="(min-width: 761px)" data-video-src="/assets/brand/omni-hero-background-video-desktop.mp4" type="video/mp4" />
+            <source media="(max-width: 760px)" data-video-src="/assets/brand/omni-hero-background-video-mobile.webm" type="video/webm" />
+            <source media="(max-width: 760px)" data-video-src="/assets/brand/omni-hero-background-video-mobile.mp4" type="video/mp4" />
+          </video>
           <div class="container hero-grid">
             <div class="hero-copy">
-              <p class="location-pill">
+              <p class="location-pill" data-reveal="left">
                 <span aria-hidden="true"></span>
                 Fairfield, Iowa, remote support available
               </p>
 
-              <h1 id="hero-title">
+              <h1 id="hero-title" data-reveal="left" data-delay="80">
                 <span>Computer trouble?</span>
                 <strong>I will take<span class="mobile-break"></span> care of it.</strong>
               </h1>
 
-              <p class="hero-intro">
+              <p class="hero-intro" data-reveal="left" data-delay="160">
                 I help with Windows, Mac, Linux, WiFi, printers, malware cleanup, file recovery, websites, and monthly maintenance.
               </p>
 
-              <div class="hero-actions">
+              <div class="hero-actions" data-reveal="left" data-delay="240">
                 <a class="button button-primary" href={phoneHref}>Call {phoneLabel}</a>
               </div>
 
-              <div class="support-tags" aria-label="Supported service categories">
+              <div class="support-tags" aria-label="Supported service categories" data-reveal-stagger="55" data-reveal-direction="rise">
                 {supportTags.map((tag) => <span>{tag}</span>)}
               </div>
             </div>
 
-            <div class="hero-photo-wrap" aria-label="Kelvin Perez contact card">
+            <div class="hero-photo-wrap" aria-label="Kelvin Perez contact card" data-reveal="right" data-delay="180">
               <div class="hero-glow" aria-hidden="true"></div>
               <div class="hero-ring" aria-hidden="true"></div>
-              <img
-                class="hero-photo"
-                src={asset("/assets/brand/omni-redesign-photo.jpg")}
-                alt="Kelvin Perez"
-                width="368"
-                height="368"
-                loading="eager"
-              />
+              <picture>
+                <source srcset={asset("/assets/brand/kevins-headshot.webp")} type="image/webp" />
+                <img
+                  class="hero-photo"
+                  src={asset("/assets/brand/kevins-headshot.jpg")}
+                  alt="Kelvin Perez"
+                  width="900"
+                  height="900"
+                  loading="eager"
+                />
+              </picture>
               <div class="hero-badge">
                 <span>Call or text</span>
                 <a href={phoneHref}>{phoneLabel}</a>
@@ -196,43 +242,96 @@ const faqs = [
           </div>
         </section>
 
-        <section id="services" class="section services-section" aria-labelledby="services-title">
+        <section id="services" class="section services-section" aria-labelledby="services-title" data-section-reveal data-section-trigger="0.22">
           <div class="container">
             <div class="split-heading">
-              <div>
+              <div class="services-intro" data-reveal="left">
                 <p class="section-kicker">Services</p>
                 <h2 id="services-title">Everything your computer needs to stay running</h2>
+                <span class="heading-accent" aria-hidden="true"></span>
+                <p class="services-lede">From everyday support to complex repairs, I keep your systems fast, secure, and reliable.</p>
               </div>
-              <a href={phoneHref}>Not sure what you need? Call first</a>
+              <a class="call-first-card" href={phoneHref} data-reveal="right" data-delay="80">
+                <span class="call-first-icon">
+                  <img src={asset("/assets/services/call-first.png")} alt="" width="26" height="26" loading="lazy" />
+                </span>
+                <span class="call-first-text">
+                  <span class="call-first-label">Not sure what you need?</span>
+                  <span class="call-first-cta">Call first</span>
+                </span>
+                <span class="call-first-arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+                </span>
+              </a>
             </div>
 
-            <div class="services-grid">
-              {services.map((service) => (
-                <article class="service-card">
-                  <div class="service-icon">
-                    <img src={asset(service.icon)} alt="" width="38" height="38" loading="lazy" />
-                  </div>
-                  <h3>{service.title}</h3>
-                  <p>{service.description}</p>
-                </article>
-              ))}
+            <div class="services-board" data-reveal-stagger="90" data-reveal-direction="rise">
+              <article class="service-card service-card--featured" data-reveal>
+                <span class="service-num service-num--solid">{featuredService.num}</span>
+                <div class="service-featured-icon">
+                  <img src={asset(featuredService.icon)} alt="" width="120" height="120" loading="lazy" />
+                </div>
+                <div class="service-featured-body">
+                  <h3>WiFi and<br />Printer Support</h3>
+                  <span class="card-accent" aria-hidden="true"></span>
+                  <p>{featuredService.description}</p>
+                  <ul class="service-tags">
+                    {featuredService.tags.map((tag) => (
+                      <li>{tag}</li>
+                    ))}
+                  </ul>
+                </div>
+              </article>
+
+              <div class="services-cards">
+                <div class="services-row services-row--top">
+                  {services.slice(0, 2).map((service) => (
+                    <article class="service-card" data-reveal>
+                      <span class="service-num">{service.num}</span>
+                      <div class="service-card-head">
+                        <div class="service-icon">
+                          <img src={asset(service.icon)} alt="" width="48" height="48" loading="lazy" />
+                        </div>
+                        <h3>{service.title}</h3>
+                      </div>
+                      <span class="card-accent" aria-hidden="true"></span>
+                      <p>{service.description}</p>
+                    </article>
+                  ))}
+                </div>
+                <div class="services-row services-row--bottom">
+                  {services.slice(2).map((service) => (
+                    <article class="service-card" data-reveal>
+                      <span class="service-num">{service.num}</span>
+                      <div class="service-card-head">
+                        <div class="service-icon">
+                          <img src={asset(service.icon)} alt="" width="40" height="40" loading="lazy" />
+                        </div>
+                        <h3>{service.title}</h3>
+                      </div>
+                      <span class="card-accent" aria-hidden="true"></span>
+                      <p>{service.description}</p>
+                    </article>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        <section id="about" class="section about-section" aria-labelledby="about-title">
+        <section id="about" class="section about-section" aria-labelledby="about-title" data-section-reveal data-section-trigger="0.22">
           <div class="container about-grid">
             <div class="about-copy">
-              <p class="section-kicker">About Kelvin</p>
-              <h2 id="about-title">I explain the work clearly. No confusing tech talk.</h2>
-              <p>
+              <p class="section-kicker" data-reveal="left">About Kelvin</p>
+              <h2 id="about-title" data-reveal="left" data-delay="80">I explain the work clearly. No confusing tech talk.</h2>
+              <p data-reveal="left" data-delay="160">
                 I built Omni Computer Support around one principle, you deserve direct, honest answers about your technology. Call me with a stubborn printer, a slow laptop, a website that needs refreshing, or print materials for your business.
               </p>
-              <p>
+              <p data-reveal="left" data-delay="240">
                 I am based in Fairfield, Iowa, and I am available remotely for software, setup, website updates, and design work.
               </p>
 
-              <div class="about-stats">
+              <div class="about-stats" data-reveal-stagger="95" data-reveal-direction="rise">
                 <div>
                   <strong>3</strong>
                   <span>Platforms, Windows, Mac, Linux</span>
@@ -248,10 +347,13 @@ const faqs = [
               </div>
             </div>
 
-            <div class="about-photo-card">
+            <div class="about-photo-card" data-reveal="right" data-delay="180">
               <div class="about-photo-glow" aria-hidden="true"></div>
               <figure>
-                <img src={asset("/assets/brand/omni-redesign-photo.jpg")} alt="Kelvin Perez" width="340" height="340" loading="lazy" />
+                <picture>
+                  <source srcset={asset("/assets/brand/kevins-headshot.webp")} type="image/webp" />
+                  <img src={asset("/assets/brand/kevins-headshot.jpg")} alt="Kelvin Perez" width="900" height="900" loading="lazy" />
+                </picture>
                 <figcaption class="sr-only">
                   <strong>Kelvin Perez</strong>
                   <span>Owner, Omni Computer Support</span>
@@ -261,16 +363,16 @@ const faqs = [
           </div>
         </section>
 
-        <section id="faq" class="section faq-section" aria-labelledby="faq-title">
+        <section id="faq" class="section faq-section" aria-labelledby="faq-title" data-section-reveal data-section-trigger="0.22">
           <div class="container faq-grid">
-            <div class="faq-heading">
+            <div class="faq-heading" data-reveal-stagger="80" data-reveal-direction="left">
               <p class="section-kicker">FAQ</p>
               <h2 id="faq-title">Good questions.</h2>
               <p>Still not sure? Call first, explain what is happening, and I will give you a clear next step.</p>
               <a href={phoneHref}>{phoneLabel}</a>
             </div>
 
-            <div class="faq-list">
+            <div class="faq-list" data-reveal-stagger="85" data-reveal-direction="rise">
               {faqs.map((item, index) => (
                 <details open={index === 0}>
                   <summary>{item.question}</summary>
@@ -281,8 +383,8 @@ const faqs = [
           </div>
         </section>
 
-        <section id="contact" class="final-cta" aria-labelledby="contact-title">
-          <div class="container final-grid">
+        <section id="contact" class="final-cta" aria-labelledby="contact-title" data-section-reveal data-section-trigger="0.24">
+          <div class="container final-grid" data-reveal-stagger="120" data-reveal-direction="alternate">
             <div>
               <h2 id="contact-title">Ready to get it fixed?</h2>
               <p>Call now, describe what is happening, and I will give you a free, honest quote before work begins.</p>
@@ -335,6 +437,77 @@ const faqs = [
         document.addEventListener("keydown", (event) => {
           if (event.key === "Escape" && menu.classList.contains("open")) close();
         });
+      })();
+
+      (() => {
+        const video = document.querySelector("[data-hero-video]");
+        if (!(video instanceof HTMLVideoElement)) return;
+
+        type NetworkConnection = { saveData?: boolean };
+        type NetworkNavigator = Navigator & {
+          connection?: NetworkConnection;
+          mozConnection?: NetworkConnection;
+          webkitConnection?: NetworkConnection;
+        };
+        type IdleWindow = Window & {
+          requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => number;
+        };
+
+        const nav = navigator as NetworkNavigator;
+        const connection = nav.connection || nav.mozConnection || nav.webkitConnection;
+        const shouldSkipVideo = window.matchMedia("(prefers-reduced-motion: reduce)").matches || Boolean(connection?.saveData);
+        if (shouldSkipVideo) return;
+
+        let loaded = false;
+        const sources = Array.from(video.querySelectorAll("source[data-video-src]")).filter((source) => {
+          const media = source.getAttribute("media");
+          return !media || window.matchMedia(media).matches;
+        });
+
+        if (!sources.length) return;
+
+        const loadVideo = () => {
+          if (loaded) return;
+          loaded = true;
+          sources.forEach((source) => {
+            source.setAttribute("src", source.getAttribute("data-video-src") || "");
+            source.removeAttribute("data-video-src");
+          });
+          video.load();
+        };
+
+        const queueVideo = () => {
+          const requestIdleCallback = (window as IdleWindow).requestIdleCallback;
+          if (typeof requestIdleCallback === "function") {
+            requestIdleCallback(loadVideo, { timeout: 1400 });
+            return;
+          }
+          setTimeout(loadVideo, 600);
+        };
+
+        video.addEventListener(
+          "canplay",
+          () => {
+            video.classList.add("is-loaded");
+            video.play().catch(() => {});
+          },
+          { once: true },
+        );
+
+        if ("IntersectionObserver" in window) {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              if (!entries.some((entry) => entry.isIntersecting)) return;
+              observer.disconnect();
+              queueVideo();
+            },
+            { rootMargin: "300px" },
+          );
+          observer.observe(video);
+          return;
+        }
+
+        queueVideo();
       })();
     </script>
   </body>
