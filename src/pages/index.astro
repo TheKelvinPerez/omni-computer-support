@@ -11,8 +11,6 @@ import "../styles/global.css";
 
 const phoneLabel = "(305) 339-9449";
 const phoneHref = "tel:+13053399449";
-const emailLabel = "thekelvinperez@gmail.com";
-const emailHref = "mailto:thekelvinperez@gmail.com";
 const basePath = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 const asset = (path: string) => `${basePath}${path.replace(/^\/+/, "")}`;
 
@@ -54,7 +52,7 @@ const services = [
 const faqs = [
   {
     question: "How much does it cost?",
-    answer: "Pricing depends on the job. Call or email with the details and I will give you a clear quote before any work begins.",
+    answer: "Pricing depends on the job. Call with the details and I will give you a clear quote before any work begins.",
   },
   {
     question: "Do you offer remote support?",
@@ -88,7 +86,10 @@ const faqs = [
       <header class="site-nav" aria-label="Primary navigation">
         <a class="brand-link" href="#top" aria-label="Omni Computer Support home">
           <img src={asset("/assets/brand/omni-redesign-logo.svg")} alt="" width="42" height="36" />
-          <span>Omni Computer Support</span>
+          <span class="brand-text">
+            <span>Omni</span>
+            <span>Computer Support</span>
+          </span>
         </a>
 
         <nav class="nav-links" aria-label="Page sections">
@@ -98,6 +99,20 @@ const faqs = [
         </nav>
 
         <a class="nav-call" href={phoneHref}>{phoneLabel}</a>
+
+        <details class="mobile-menu">
+          <summary aria-label="Open navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+          </summary>
+          <div class="mobile-menu-panel">
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#faq">FAQ</a>
+            <a href={phoneHref}>Call {phoneLabel}</a>
+          </div>
+        </details>
       </header>
 
       <main id="top">
@@ -114,7 +129,7 @@ const faqs = [
 
               <h1 id="hero-title">
                 <span>Computer trouble?</span>
-                <strong>I will take care of it.</strong>
+                <strong>I will take<span class="mobile-break"></span> care of it.</strong>
               </h1>
 
               <p class="hero-intro">
@@ -123,7 +138,6 @@ const faqs = [
 
               <div class="hero-actions">
                 <a class="button button-primary" href={phoneHref}>Call {phoneLabel}</a>
-                <a class="button button-secondary" href={emailHref}>Email Kelvin</a>
               </div>
 
               <div class="support-tags" aria-label="Supported service categories">
@@ -243,7 +257,6 @@ const faqs = [
             </div>
             <div class="final-actions">
               <a class="button button-primary button-large" href={phoneHref}>Call {phoneLabel}</a>
-              <a href={emailHref}>{emailLabel}</a>
             </div>
           </div>
         </section>
@@ -256,7 +269,6 @@ const faqs = [
         </div>
         <div class="footer-links">
           <a href={phoneHref}>{phoneLabel}</a>
-          <a href={emailHref}>{emailLabel}</a>
           <span>Fairfield, Iowa</span>
         </div>
       </footer>

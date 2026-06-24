@@ -94,6 +94,10 @@ a {
   white-space: nowrap;
 }
 
+.brand-text > span {
+  display: inline;
+}
+
 .brand-link img {
   width: auto;
   height: 34px;
@@ -112,17 +116,72 @@ a {
 .nav-links a,
 .footer-links a,
 .split-heading > a,
-.faq-heading a,
-.final-actions > a:last-child {
+.faq-heading a {
   transition: color 180ms ease;
 }
 
 .nav-links a:hover,
 .footer-links a:hover,
 .split-heading > a:hover,
-.faq-heading a:hover,
-.final-actions > a:last-child:hover {
+.faq-heading a:hover {
   color: var(--blue);
+}
+
+.mobile-menu {
+  display: none;
+  position: relative;
+}
+
+.mobile-menu summary {
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  gap: 4px;
+  border: 1px solid rgba(18, 38, 75, 0.1);
+  border-radius: 10px;
+  background: #ffffff;
+  list-style: none;
+  box-shadow: 0 10px 24px rgba(16, 32, 60, 0.08);
+}
+
+.mobile-menu summary::-webkit-details-marker {
+  display: none;
+}
+
+.mobile-menu summary span {
+  width: 18px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--ink);
+}
+
+.mobile-menu-panel {
+  position: fixed;
+  top: 76px;
+  right: 22px;
+  z-index: 60;
+  width: min(270px, calc(100vw - 44px));
+  display: grid;
+  gap: 6px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 24px 60px rgba(16, 32, 60, 0.14);
+}
+
+.mobile-menu-panel a {
+  padding: 15px 16px;
+  border-radius: 10px;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.mobile-menu-panel a:last-child {
+  background: var(--blue);
+  color: #ffffff;
 }
 
 .nav-call {
@@ -250,6 +309,10 @@ a {
   gap: 80px;
 }
 
+.hero-copy {
+  min-width: 0;
+}
+
 .location-pill {
   width: fit-content;
   display: inline-flex;
@@ -289,13 +352,17 @@ h3 {
   line-height: 1.03;
 }
 
-.hero h1 span,
-.hero h1 strong {
+.hero h1 > span,
+.hero h1 > strong {
   display: block;
 }
 
 .hero h1 strong {
   color: var(--blue);
+}
+
+.mobile-break {
+  display: none;
 }
 
 .hero-intro {
@@ -651,11 +718,11 @@ h3 {
   display: grid;
 }
 
-details {
+.faq-list details {
   border-bottom: 1px solid rgba(18, 38, 75, 0.1);
 }
 
-summary {
+.faq-list summary {
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -669,11 +736,11 @@ summary {
   list-style: none;
 }
 
-summary::-webkit-details-marker {
+.faq-list summary::-webkit-details-marker {
   display: none;
 }
 
-summary::after {
+.faq-list summary::after {
   content: "+";
   width: 28px;
   height: 28px;
@@ -689,11 +756,11 @@ summary::after {
   line-height: 1;
 }
 
-details[open] summary::after {
+.faq-list details[open] summary::after {
   content: "×";
 }
 
-details p {
+.faq-list details p {
   max-width: 780px;
   margin: 0;
   padding: 0 52px 26px 0;
@@ -736,12 +803,6 @@ details p {
   flex-direction: column;
   align-items: center;
   gap: 12px;
-}
-
-.final-actions > a:last-child {
-  color: var(--soft-muted);
-  font-size: 0.8125rem;
-  font-weight: 500;
 }
 
 .site-footer {
@@ -815,19 +876,114 @@ details p {
   }
 }
 
+@media (max-width: 900px) {
+  .container {
+    width: min(var(--max), calc(100% - 48px));
+  }
+
+  .hero {
+    min-height: auto;
+    align-items: flex-start;
+    padding: 110px 0 58px;
+  }
+
+  .hero-grid {
+    gap: 28px;
+  }
+
+  .location-pill {
+    max-width: 100%;
+    margin-bottom: 30px;
+    font-size: 0.78rem;
+  }
+
+  .hero h1 {
+    max-width: 100%;
+    font-size: clamp(3.1rem, 10vw, 4.25rem);
+    line-height: 0.98;
+  }
+
+  .hero-intro {
+    max-width: 34rem;
+    margin-top: 26px;
+    font-size: 1rem;
+  }
+
+  .hero-actions {
+    margin-top: 30px;
+  }
+
+  .hero-actions .button-primary {
+    width: min(100%, 320px);
+  }
+
+  .support-tags {
+    max-width: 100%;
+    margin-top: 34px;
+  }
+
+  .hero-photo-wrap {
+    min-height: 390px;
+  }
+
+  .hero-glow {
+    width: min(84vw, 380px);
+    height: min(84vw, 380px);
+  }
+
+  .hero-ring {
+    width: min(76vw, 350px);
+    height: min(76vw, 350px);
+  }
+
+  .hero-photo {
+    width: min(70vw, 320px);
+    height: min(70vw, 320px);
+  }
+
+  .hero-badge {
+    right: auto;
+    bottom: 16px;
+    left: 50%;
+    width: min(350px, calc(100% - 32px));
+    min-width: 0;
+    transform: translateX(-50%);
+  }
+
+  .hero-badge a {
+    font-size: clamp(1.35rem, 7vw, 1.85rem);
+  }
+}
+
 @media (max-width: 760px) {
   .container {
     width: min(var(--max), calc(100% - 44px));
   }
 
   .site-nav {
+    height: 76px;
     padding: 0 22px;
   }
 
-  .brand-link span {
-    max-width: 170px;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  .brand-link {
+    gap: 12px;
+    white-space: normal;
+  }
+
+  .brand-link img {
+    height: 42px;
+    border-radius: 0;
+  }
+
+  .brand-text {
+    display: grid;
+    gap: 2px;
+    text-align: left;
+    line-height: 1.02;
+  }
+
+  .brand-text > span {
+    display: block;
   }
 
   .nav-links {
@@ -835,26 +991,43 @@ details p {
   }
 
   .nav-call {
-    padding: 9px 14px;
-    font-size: 0.78rem;
+    display: none;
+  }
+
+  .mobile-menu {
+    display: block;
   }
 
   .hero {
-    padding: 96px 0 56px;
+    padding-top: 118px;
   }
 
   .hero h1 {
-    font-size: clamp(3rem, 16vw, 4.8rem);
+    font-size: clamp(2.2rem, 10.2vw, 3.1rem);
   }
 
   .hero-actions {
     align-items: flex-start;
     flex-direction: column;
-    gap: 18px;
+    gap: 0;
   }
 
-  .button-secondary {
+  .mobile-break {
+    display: block;
+  }
+
+  .support-tags {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .support-tags span {
+    display: grid;
+    place-items: center;
     min-height: 42px;
+    padding-inline: 8px;
+    text-align: center;
+    letter-spacing: 0.04em;
   }
 
   .section {
@@ -897,16 +1070,24 @@ details p {
 }
 
 @media (max-width: 430px) {
-  .brand-link img {
-    height: 30px;
+  .container {
+    width: min(var(--max), calc(100% - 36px));
   }
 
-  .nav-call {
-    display: none;
+  .brand-link {
+    max-width: calc(100% - 58px);
+  }
+
+  .brand-link img {
+    height: 40px;
+  }
+
+  .brand-text {
+    font-size: 0.92rem;
   }
 
   .hero-photo-wrap {
-    min-height: 365px;
+    min-height: 340px;
   }
 
   .hero-glow {
@@ -925,10 +1106,11 @@ details p {
   }
 
   .hero-badge {
-    right: auto;
     bottom: 18px;
-    left: 50%;
-    min-width: 210px;
-    transform: translateX(-50%);
+    padding: 14px 18px;
+  }
+
+  .hero-badge a {
+    font-size: clamp(1.25rem, 7vw, 1.55rem);
   }
 }
