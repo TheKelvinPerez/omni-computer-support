@@ -351,8 +351,7 @@ body.menu-open {
   background: #ffffff;
 }
 
-.hero::before,
-.hero::after {
+.hero::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -362,10 +361,6 @@ body.menu-open {
 
 .hero::before {
   background: url("/assets/brand/omni-hero-background-v2.png") center / cover no-repeat;
-}
-
-.hero::after {
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.62) 52%, rgba(255, 255, 255, 0.82));
 }
 
 .hero-grid {
@@ -974,10 +969,6 @@ h3 {
     background-position: center top;
   }
 
-  .hero::after {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.84));
-  }
-
   .hero-grid {
     gap: 28px;
   }
@@ -1002,10 +993,11 @@ h3 {
 
   .hero-actions {
     margin-top: 30px;
+    width: 100%;
   }
 
   .hero-actions .button-primary {
-    width: min(100%, 320px);
+    width: 100%;
   }
 
   .support-tags {
@@ -1101,6 +1093,7 @@ h3 {
     align-items: flex-start;
     flex-direction: column;
     gap: 0;
+    width: 100%;
   }
 
   .mobile-break {
@@ -1133,6 +1126,25 @@ h3 {
 
   .services-grid {
     grid-template-columns: 1fr;
+  }
+
+  .service-card {
+    padding: 34px 28px;
+  }
+
+  .service-icon {
+    width: 100%;
+    height: auto;
+    place-items: start;
+    margin-bottom: 26px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+  }
+
+  .service-icon img {
+    width: 76px;
+    height: 76px;
   }
 
   .about-stats {
